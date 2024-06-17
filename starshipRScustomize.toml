@@ -28,12 +28,12 @@ format = '$all'
 [aws] 
 format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 symbol = '☁️ '
-sytle = 'bold yellow'
+style = 'bold yellow'
 expiration_symbol = 'X'
 disabled = false
 
 # The azure module shows the current Azure Subscription.
-[Azure]
+[azure]
 disabled = true
 format = 'on [$symbol($subscription)]($style) '
 symbol = '󰠅 '
@@ -521,7 +521,7 @@ symbol = '☁️ '
 style = 'bold yellow'
 
 # The os module shows the current operating system.
-[OS]
+[os]
 disabled = true
 format = '[$symbol]($style)'
 style = 'bold white'

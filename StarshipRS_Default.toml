@@ -236,7 +236,7 @@ add_newline = true
 [aws] 
 format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 symbol = '☁️ '
-sytle = 'bold yellow'
+style = 'bold yellow'
 expiration_symbol = 'X'
 disabled = false
 force_display = false
@@ -255,7 +255,7 @@ force_display = false
 # CompanyGroupFrobozzOnCallAccess = 'Frobozz'
 
 # The azure module shows the current Azure Subscription.
-[Azure]
+[azure]
 disabled = true
 format = 'on [$symbol($subscription)]($style) '
 symbol = '󰠅 '
@@ -689,7 +689,7 @@ disabled = true
 format = 'on [$symbol$branch]($style) '
 symbol = ' '
 style = 'bold purple'
-truncation_length = 2^63 - 1
+# truncation_length = 2^63 - 1
 truncation_symbol = '…'
 
 # fossil_branch example
@@ -752,7 +752,7 @@ always_show_remote = false
 format = 'on [$symbol$branch(:$remote_branch)]($style) '
 symbol = ' '
 style = 'bold purple'
-truncation_length = 2^63 - 1
+# truncation_length = 2^63 - 1
 truncation_symbol = '…'
 only_attached = false
 
@@ -1158,7 +1158,7 @@ style = 'bold dimmed white'
 # The meson module shows the current Meson developer environment status.
 [meson]
 disabled = false
-truncation_length = 2^32 - 1
+# truncation_length = 2^32 - 1
 truncation_symbol = '…'
 format = 'via [$symbol$project]($style) '
 symbol = '⬢ '
@@ -1178,7 +1178,7 @@ disabled = true
 symbol = ' '
 style = 'bold purple'
 format = 'on [$symbol$branch(:$topic)]($style) '
-truncation_length = 2^63 - 1
+# truncation_length = 2^63 - 1
 truncation_symbol = '…'
 
 # hg_branch exmaple
@@ -1312,7 +1312,7 @@ style = 'bold yellow'
 # symbol = '☁️ '
 
 # The os module shows the current operating system.
-[OS]
+[os]
 disabled = true
 format = '[$symbol]($style)'
 style = 'bold white'
@@ -1427,7 +1427,7 @@ disabled = true
 symbol = ' '
 style = 'bold purple'
 format = 'on [$symbol$channel]($style) '
-truncation_length = 2^63 - 1
+# truncation_length = 2^63 - 1
 truncation_symbol = '…'
 
 # The pulumi module shows the current username, selected Pulumi Stack, and version.
@@ -1699,7 +1699,7 @@ style = 'bold red'
 recognize_signal_code = true
 map_symbol = false
 pipestatus = false
-pipestatus_separator = |
+pipestatus_separator = '|'
 # pipestatus_segment_format	= '' # When specified, replaces format when formatting 
                                  # pipestatus segments
 # 
