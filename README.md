@@ -1,4 +1,4 @@
-###**Starship Configuration Files [WIP]**###
+#**Starship Configuration Files [WIP]**
 
 This repository contains two Starship (.toml) configuration files to help you customize your Starship.RS prompt:
 
