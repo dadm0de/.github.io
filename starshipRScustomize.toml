@@ -1,0 +1,816 @@
+# Example Starship.RS configuration file
+# Written by: Dadm0de
+
+# This file doesn't change the default settings, just offers the opportunity to customize
+# the format, and style and whether a module is shown or not.
+
+# I would recommend commenting the default and typing your own custmoization so if something,
+# doesn't show up as you would expect you have the default to look at.
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Timeout for starship to scan files (in milliseconds). default 30 
+scan_timeout = 10 
+
+# Inserts blank line between shell prompts.
+add_newline = true
+
+#PROMPT
+format = '$all' 
+
+# Some shells support a right prompt which renders on the same line as the input
+# right_format = '$all' #UNCOMMENT TO USE [my preference is to use $fill instead
+# Also can use the $fill module to push items to the right side.
+
+# The aws module shows the current AWS region and profile and an expiration timer 
+# when using temporary credentials.
+[aws] 
+format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = '☁️ '
+sytle = 'bold yellow'
+expiration_symbol = 'X'
+disabled = false
+
+# The azure module shows the current Azure Subscription.
+[Azure]
+disabled = true
+format = 'on [$symbol($subscription)]($style) '
+symbol = '󰠅 '
+style = 'blue bold'
+
+# The battery module shows how charged the device's battery is and its 
+# current charging status.
+[battery]
+disabled = false
+format = '[$symbol$percentage]($style) '
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂃 '
+unknown_symbol = '󰁽 '
+empty_symbol = '󰂎 '
+[[battery.display]] 
+threshold = 10
+style = 'bold red'
+charging_symbol = ' '
+discharging_symbol = ' '
+
+# The buf module shows the currently installed version of Buf.
+[buf]
+disabled = false
+format ='with [$symbol($version )]($style)'
+symbol = '🐃 '
+style = 'bold blue'
+
+# The bun module shows the currently installed version of the bun JavaScript runtime.
+[bun]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🥟 '
+style = 'bold red'
+
+# The c module shows some information about your C compiler.
+[c]
+disabled = false
+format = 'via [$symbol($version(-$name) )]($style)'
+symbol = 'C '
+style = 'bold 149'
+
+# The character module shows a character (usually an arrow) beside where the 
+# text is entered in your terminal.
+#SYMBOL AFTER PROMPT
+[character]
+disabled = false
+format = '$symbol '
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+vimcmd_symbol = '[❮](bold green)'
+vimcmd_replace_one_symbol = '[❮](bold purple)'
+vimcmd_replace_symbol = '[❮](bold purple)'
+vimcmd_visual_symbol = '[❮](bold yellow)'
+
+# The cmake module shows the currently installed version of CMake.
+[cmake] # no examples provided in the config
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '△ '
+style = 'bold blue'
+
+# The cobol module shows the currently installed version of COBOL.
+[cobol] # no exmamples provided in the config
+disabled = false
+symbol = '⚙️ '
+format = 'via [$symbol($version )]($style)'
+style = 'bold blue'
+
+# The cmd_duration module shows how long the last command took to execute.
+[cmd_duration]
+disabled = false
+min_time = 2_000
+show_milliseconds = false
+format = 'took [$duration]($style) '
+style = 'bold yellow'
+show_notifications = false
+
+# The conda module shows the current Conda environment, if $CONDA_DEFAULT_ENV is set.
+[conda]
+disabled = false
+truncation_length = 1
+symbol = '🅒 '
+style = 'bold green'
+format = 'via [$symbol$environment]($style) '
+
+# The container module displays a symbol and container name, if inside a container.
+[container]
+disabled = false
+symbol = '⬢'
+style = 'bold red dimmed'
+format = '[$symbol \[$name\]]($style) '
+
+# The crystal module shows the currently installed version of Crystal.
+[crystal]
+disabled = false
+symbol = '🔮 '
+format = 'via [$symbol($version )]($style)'
+style = 'bold red'
+
+# The daml module shows the currently used Daml SDK version when you are in 
+# the root directory of your Daml project.
+[daml]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = 'Λ '
+style = 'bold cyan'
+
+# The dart module shows the currently installed version of Dart.
+[dart]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🎯 '
+style = 'bold blue'
+
+# The deno module shows you your currently installed version of Deno.
+[deno]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🦕 '
+style = 'green bold'
+
+# The directory module shows the path to your current directory, 
+# truncated to three parent folders.
+[directory]
+disabled = false
+truncation_length = 3
+truncate_to_repo = true
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = 'bold cyan'
+read_only = '🔒'
+read_only_style = 'red'
+truncation_symbol = '…/'
+home_symbol = '~'
+
+# The direnv module shows the status of the current rc file if one is present.
+[direnv]
+disabled = true
+format = '[$symbol$loaded/$allowed]($style) '
+symbol = 'direnv '
+style = 'bold orange'
+allowed_msg = 'allowed'
+not_allowed_msg = 'not allowed'
+denied_msg = 'denied'
+loaded_msg = 'loaded'
+unloaded_msg = 'not loaded'
+
+# The docker_context module shows the currently active Docker context if 
+# it's not set to default or if the DOCKER_MACHINE_NAME, DOCKER_HOST or 
+# DOCKER_CONTEXT environment variables are set (as they are meant 
+# to override the context in use).
+[docker_context]
+disabled = false
+format = 'via [$symbol$context]($style) '
+symbol = '🐳 '
+style = 'blue bold'
+
+# The dotnet module shows the relevant version of the .NET Core SDK for 
+# the current directory.
+[dotnet]
+disabled = false
+format = 'via [$symbol($version )(🎯 $tfm )]($style)'
+symbol = '.NET '
+style = 'bold blue'
+
+# The elixir module shows the currently installed version of Elixir 
+# and Erlang/OTP.
+[elixir]
+disabled = false
+format = 'via [$symbol($version \(OTP $otp_version\) )]($style)'
+symbol = '💧 '
+style = 'bold purple'
+
+# The elm module shows the currently installed version of Elm.
+[elm]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🌳 '
+style = 'cyan bold'
+
+# The erlang module shows the currently installed version of Erlang/OTP.
+[erlang]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = ' '
+style = 'bold red'
+
+# The fennel module shows the currently installed version of Fennel.
+[fennel]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🧅 '
+style = 'bold green'
+
+# The fill module fills any extra space on the line with a symbol. 
+# If multiple fill modules are present in a line they will split 
+# the space evenly between them.
+[fill]
+disabled = false
+symbol = '.' #change this to a space to just fill with nothing.
+style = 'bold black'
+
+# The fossil_branch module shows the name of the active branch of the 
+# check-out in your current directory.
+[fossil_branch]
+disabled = true
+format = 'on [$symbol$branch]($style) '
+symbol = ' '
+style = 'bold purple'
+truncation_symbol = '…'
+
+# The fossil_metrics module will show the number of added and deleted 
+# lines in the check-out in your current directory.
+[fossil_metrics]
+disabled = true
+format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+added_style = 'bold green'
+deleted_style = 'bold red'
+
+# The gcloud module shows the current configuration for gcloud CLI.
+[gcloud]
+disabled = false
+format = 'on [$symbol$account(@$domain)(\($region\))]($style) '
+symbol = '☁️ '
+style = 'bold blue'
+
+# The git_branch module shows the active branch of the repo in your current directory.
+[git_branch]
+disabled = false
+format = 'on [$symbol$branch(:$remote_branch)]($style) '
+symbol = ' '
+style = 'bold purple'
+truncation_symbol = '…'
+
+# The git_commit module shows the current commit hash and also the tag (if any) 
+# of the repo in your current directory.
+[git_commit]
+disabled = false
+format = '[\($hash$tag\)]($style) '
+style = 'bold green'
+tag_symbol = ' 🏷 '
+
+# The git_state module will show in directories which are part of a git 
+# repository, and where there is an operation in progress, such as: 
+# REBASING, BISECTING, etc.
+[git_state]
+disabled = false
+rebase = 'REBASING'
+merge = 'MERGING'
+revert = 'REVERTING'
+cherry_pick = 'CHERRY-PICKING'
+bisect = 'BISECTING'
+am = 'AM'
+am_or_rebase = 'AM/REBASE'
+style = 'bold yellow'
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+# The git_metrics module will show the number of added and deleted lines 
+# in the current git repository.
+[git_metrics]
+disabled = true
+added_style = 'bold green'
+deleted_style = 'bold red'
+format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+
+# The git_status module shows symbols representing the state of the 
+# repo in your current directory.
+[git_status]
+disabled = false
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = '='
+ahead = '⇡'
+behind = '⇣'
+diverged = '⇕'
+up_to_date = ''
+untracked = '?'
+stashed = '$'
+modified = '!'
+staged = '+'
+renamed = '»'
+deleted = '✘'
+typechanged = ""
+style = 'bold red'
+
+# The gleam module shows the currently installed version of Gleam.
+[gleam]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '⭐ '
+style = 'bold #FFAFF3'
+
+# The golang module shows the currently installed version of Go.
+[golang]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🐹 '
+style = 'bold cyan'
+not_capable_style = 'bold red'
+
+# The guix_shell module shows the guix-shell environment. The module will 
+# be shown when inside a guix-shell environment.
+[guix_shell]
+disabled = false
+format = 'via [$symbol]($style) '
+symbol = '🐃 '
+style = 'yellow bold'
+
+# The gradle module shows the version of the Gradle Wrapper currently 
+# used in the project directory.
+[gradle] # no exmaples given in config
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🅶 '
+style = 'bold bright-cyan'
+
+# The haskell module finds the current selected GHC version and/or the 
+# selected Stack snapshot.
+[haskell] #no exmaples given in config
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = 'λ '
+style = 'bold purple'
+
+# The haxe module shows the currently installed version of Haxe.
+[haxe]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '⌘ '
+style = 'bold fg:202'
+
+# The helm module shows the currently installed version of Helm.
+[helm]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '⎈ '
+style = 'bold white'
+
+# The hostname module shows the system hostname.
+[hostname]
+disabled = false
+ssh_only = true #change to false if you want hostname to show all the Time
+ssh_symbol = '🌐 '
+format = '[$ssh_symbol$hostname]($style) in '
+style = 'bold dimmed green'
+
+# The java module shows the currently installed version of Java.
+[java]
+disabled = false
+format = 'via [${symbol}(${version} )]($style)'
+symbol = '☕ '
+style = 'red dimmed'
+
+# The jobs module shows the current number of jobs running.
+[jobs]
+disabled = false
+format = '[$symbol$number]($style) '
+symbol = '✦'
+style = 'bold blue'
+
+# The julia module shows the currently installed version of Julia.
+[julia]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = 'ஃ '
+style = 'bold purple'
+
+# The kotlin module shows the currently installed version of Kotlin.
+[kotlin]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🅺 '
+style = 'bold blue'
+
+# Displays the current Kubernetes context name and, if set, the 
+# namespace, user and cluster from the kubeconfig file.
+[kubernetes]
+disabled = true
+symbol = '☸ '
+format = '[$symbol$context( \($namespace\))]($style) in '
+style = 'cyan bold'
+
+# The line_break module separates the prompt into two lines.
+[line_break]
+disabled = false
+
+# The localip module shows the IPv4 address of the primary network interface.
+[localip]
+disabled = true #set to false to show in ssh unless see next line
+ssh_only = true #set to false to show all the time
+format = '[$localipv4]($style) '
+style = 'bold yellow'
+
+# The lua module shows the currently installed version of Lua.
+[lua]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🌙 '
+style = 'bold blue'
+
+# The memory_usage module shows current system memory and swap usage.
+[memory_usage]
+disabled = true
+threshold = 75
+format = 'via $symbol [${ram}( | ${swap})]($style) '
+symbol = '🐏'
+style = 'bold dimmed white'
+
+# The meson module shows the current Meson developer environment status.
+[meson]
+disabled = false
+truncation_symbol = '…'
+format = 'via [$symbol$project]($style) '
+symbol = '⬢ '
+style = 'blue bold'
+
+# The hg_branch module shows the active branch and topic of the repo in your 
+# current directory.
+[hg_branch]
+disabled = true
+symbol = ' '
+style = 'bold purple'
+format = 'on [$symbol$branch(:$topic)]($style) '
+truncation_symbol = '…'
+
+# The nats module shows the name of the current NATS context.
+[nats]
+disabled = false
+symbol = '✉️ '
+style = 'bold purple'
+format = '[$symbol$name]($style)'
+
+# The nim module shows the currently installed version of Nim.
+[nim]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '👑 '
+style = 'bold yellow'
+
+# The nix_shell module shows the nix-shell environment.
+[nix_shell]
+disabled = false
+format = 'via [$symbol$state( \($name\))]($style) '
+symbol = '❄️ '
+style = 'bold blue'
+impure_msg = 'impure'
+pure_msg = 'pure'
+unknown_msg = ''
+
+# The nodejs module shows the currently installed version of Node.js.
+[nodejs]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = ' '
+style = 'bold green'
+not_capable_style = 'bold red'
+
+# The ocaml module shows the currently installed version of OCaml.
+[ocaml]
+disabled = false
+format = 'via [$symbol($version )(\($switch_indicator$switch_name\) )]($style)'
+symbol = '🐫 '
+global_switch_indicator = ''
+local_switch_indicator = '*'
+style = 'bold yellow'
+
+# The 'odin' module shows the currently installed version of Odin.
+[odin]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = 'Ø '
+style = 'bold bright-blue'
+
+# The opa module shows the currently installed version of the OPA tool.
+[opa]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🪖 '
+style = 'bold blue'
+
+# The openstack module shows the current OpenStack cloud and project.
+[openstack]
+disabled = false
+format = 'on [$symbol$cloud(\($project\))]($style) '
+symbol = '☁️ '
+style = 'bold yellow'
+
+# The os module shows the current operating system.
+[OS]
+disabled = true
+format = '[$symbol]($style)'
+style = 'bold white'
+
+[os.symbols] #operating system icons
+AIX = "➿ "
+Alpaquita = "🔔 "
+AlmaLinux = "💠 "
+Alpine = "🏔️ "
+Amazon = "🙂 "
+Android = "🤖 "
+Arch = "🎗️ "
+Artix = "🎗️ "
+CentOS = "💠 "
+Debian = "🌀 "
+DragonFly = "🐉 "
+Emscripten = "🔗 "
+EndeavourOS = "🚀 "
+Fedora = "🎩 "
+FreeBSD = "😈 "
+Garuda = "🦅 "
+Gentoo = "🗜️ "
+HardenedBSD = "🛡️ "
+Illumos = "🐦 "
+Kali = "🐉 "
+Linux = "🐧 "
+Mabox = "📦 "
+Macos = "🍎 "
+Manjaro = "🥭 "
+Mariner = "🌊 "
+MidnightBSD = "🌘 "
+Mint = "🌿 "
+NetBSD = "🚩 "
+NixOS = "❄️ "
+OpenBSD = "🐡 "
+OpenCloudOS = "☁️ "
+openEuler = "🦉 "
+openSUSE = "🦎 "
+OracleLinux = "🦴 "
+Pop = "🍭 "
+Raspbian = "🍓 "
+Redhat = "🎩 "
+RedHatEnterprise = "🎩 "
+RockyLinux = "💠 "
+Redox = "🧪 "
+Solus = "⛵ "
+SUSE = "🦎 "
+Ubuntu = "🎯 "
+Ultramarine = "🔷 "
+Unknown = "❓ "
+Void = "  "
+Windows = "🪟 "
+
+# The package module is shown when the current directory is the repository 
+# for a package, and shows its current version.The module currently supports 
+# npm, nimble, cargo, poetry, python, composer, gradle, julia, mix, helm, 
+# shards, daml and dart packages.
+[package]
+disabled = false
+format = 'is [$symbol$version]($style) '
+symbol = '📦 '
+style = 'bold 208'
+
+# The perl module shows the currently installed version of Perl.
+[perl]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🐪 '
+style = 'bold 149'
+
+# The php module shows the currently installed version of PHP. 
+[php]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🐘 '
+style = '147 bold'
+
+# The pijul_channel module shows the active channel of the repo in your current directory.
+[pijul_channel] #no example provided
+disabled = true
+symbol = ' '
+style = 'bold purple'
+format = 'on [$symbol$channel]($style) '
+truncation_symbol = '…'
+
+# The pulumi module shows the current username, selected Pulumi Stack, and version.
+[pulumi]
+disabled = false
+format = 'via [$symbol($username@)$stack]($style) '
+symbol = ' '
+style = 'bold 5'
+
+# The purescript module shows the currently installed version of PureScript version.
+[purescript]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '<=> '
+style = 'bold white'
+
+# The python module shows the currently installed version of Python 
+# and the current Python virtual environment if one is activated.
+[python]
+disabled = false
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = '🐍 '
+style = 'yellow bold'
+
+# The quarto module shows the current installed version of Quarto used in a project.
+[quarto] #no example given
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '⨁ '
+style = 'bold #75AADB'
+
+# The rlang module shows the currently installed version of R. 
+[rlang]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '📐'
+style = 'blue bold'
+
+# The raku module shows the currently installed version of Raku. 
+[raku]
+disabled = false
+format = 'via [$symbol($version-$vm_version )]($style)'
+symbol = '🦋 '
+style = 'bold 149'
+
+# By default the red module shows the currently installed version of Red. 
+[red]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🔺 '
+style = 'red bold'
+
+# By default the ruby module shows the currently installed version of Ruby.
+[ruby]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '💎 '
+style = 'bold red'
+
+# By default the rust module shows the currently installed version of Rust. 
+[rust]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🦀 '
+style = 'bold red'
+
+# The scala module shows the currently installed version of Scala. 
+[scala]
+disabled = false
+format = 'via [${symbol}(${version} )]($style)'
+symbol = '🆂 '
+style = 'red dimmed'
+
+# The shell module shows an indicator for currently used shell.
+[shell]
+disabled = true
+bash_indicator = 'bsh'
+fish_indicator = 'fsh'
+zsh_indicator = 'zsh'
+powershell_indicator = 'psh'
+# pwsh_indicator = '' #default mirrors powershell_indicator
+ion_indicator = 'ion'
+elvish_indicator = 'esh'
+tcsh_indicator = 'tsh'
+xonsh_indicator = 'xsh'
+cmd_indicator = 'cmd'
+nu_indicator = 'nu'
+unknown_indicator = ''
+format = '[$indicator]($style) '
+style = 'white bold'
+
+# The shlvl module shows the current SHLVL ('shell level') environment 
+# variable, if it is set to a number and meets or exceeds the specified 
+# threshold.
+[shlvl]
+disabled = true
+format = '[$symbol$shlvl]($style) '
+symbol = '↕️ '
+style = 'bold yellow'
+
+# The singularity module shows the current Singularity image
+[singularity]
+disabled = false
+format = '[$symbol\[$env\]]($style) '
+symbol = ''
+style = 'bold dimmed blue'
+
+# The solidity module shows the currently installed version of Solidity 
+[solidity]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = 'S '
+style = 'bold blue'
+
+# The spack module shows the current Spack environment
+[spack]
+disabled = false
+symbol = '🅢 '
+style = 'bold blue'
+format = 'via [$symbol$environment]($style) '
+
+# The status module displays the exit code of the previous command.
+[status]
+disabled = true
+format = '[$symbol$status]($style) '
+symbol = '❌'
+success_symbol = ''
+not_executable_symbol = '🚫'
+not_found_symbol = '🔍'
+sigint_symbol = '🧱'
+signal_symbol = '⚡'
+style = 'bold red'
+
+# The sudo module displays if sudo credentials are currently cached.
+[sudo]
+disabled = true #false to show
+format = '[as $symbol]($style)'
+symbol = '🧙 '
+style = 'bold blue'
+
+# By default the swift module shows the currently installed version of Swift.
+[swift]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '🐦 '
+style = 'bold 202'
+
+# The terraform module shows the currently selected Terraform workspace and version.
+[terraform]
+disabled = false
+format = 'via [$symbol$workspace]($style) '
+symbol = '💠'
+style = 'bold 105'
+
+# The time module shows the current local time.
+[time]
+disabled = true
+format = 'at [$time]($style) '
+use_12hr = false
+style = 'bold yellow'
+
+# The typst module shows the current installed version of Typst used in a project.
+[typst] # no example provided
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = 't '
+style = 'bold #0093A7'
+
+# The username module shows active user's username.
+[username]
+disabled = false
+style_root = 'bold red'
+style_user = 'bold yellow'
+format = '[$user]($style) in '
+show_always = false #set to true to see Always
+
+# The vagrant module shows the currently installed version of Vagrant. 
+[vagrant]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '⍱ '
+style = 'cyan bold'
+
+# The vlang module shows you your currently installed version of V. 
+[vlang]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = 'V '
+style = 'blue bold'
+
+# The vcsh module displays the current active VCSH repository. 
+[vcsh]
+disabled = false
+symbol = ''
+style = 'bold yellow'
+format = 'vcsh [$symbol$repo]($style) '
+
+# By default the zig module shows the currently installed version of Zig.
+[zig]
+disabled = false
+format = 'via [$symbol($version )]($style)'
+symbol = '↯ '
+style = 'bold yellow'
+
+# A continuation prompt that displays two filled-in arrows
+# Some shells support a continuation prompt along with the normal prompt. 
+# This prompt is rendered instead of the normal prompt when the user has 
+# entered an incomplete statement (such as a single left parenthesis or quote).
+# continuation_prompt = '▶▶ ' #uncomment to use
